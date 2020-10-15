@@ -1,0 +1,36 @@
+.features {
+    grid-column: center-start / center-end;
+
+    margin: 15rem 0;
+
+    display: grid; // this is a grid item and we want it to be a grid container for its own contents as well
+    // grid-template-columns: repeat(3, 1fr); // we change this to a new version with auto fit that is responsive
+    // grid-template-rows: auto auto;// we don`t need to specify this because this will happen automatically.
+    grid-template-columns: repeat(auto-fit, minmax( 25rem, 1fr ));// here we want the cols to be at least 25rem and maximum to 1fr 
+    // if the min width is going to be less than 25rem then it will be transferred to the next line.
+
+    grid-gap: 6rem;
+    align-items: start;// before setting this property there was an unbalanced space between the header and text in those cards that have a smaller text
+    // so we defined this to put the items contents to the start to all the text start from the same place.
+}
+
+.feature {
+    display: grid;
+    grid-template-columns: min-content 1fr;// the first col will be for the icon so we only want the minimum in order to could have that.
+    grid-row-gap: 1.5rem;
+    grid-column-gap: 2.5rem;
+    &__icon {
+        fill: $color-primary;
+        width: 4.5rem;
+        height: 4.5rem;
+
+        grid-row: 1 / span 2;// we want the whole col 1 to be occupied by this icon, in order to put the other two items automatically to the next col
+        // the grid-row: 1 / -1 does not work here because it only works on explicit grids.
+
+        transform: translateY(-1rem);// to place the icon upper than the text
+    }
+
+    &__text {
+        font-size: 1.7rem;
+    }
+}

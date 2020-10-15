@@ -1,0 +1,68 @@
+// COLOR VARIABLES
+$color-primary: #c69963;
+$color-primary-dark: #B28451; 
+
+$color-secondary: #101d2c;
+
+$color-grey-light-1: #f9f7f6;
+$color-grey-light-2: #aaa;
+
+$color-grey-dark-1: #54483A;
+$color-grey-dark-2: #6D5D4B;
+
+// FONT VARIABLES
+$font-primary: 'Nunito', sans-serif;
+$font-display: 'Josefin Sans', sans-serif;
+
+//GLOBAL SETTING
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; // 10px / 16px = 62.5% -> 1rem= 10px
+}
+body {
+    font-family: $font-primary;
+    color: $color-grey-dark-2;
+    font-weight: 300;
+    line-height: 1.6;
+}
+// LAYOUTS
+// THE FIRST ONE IS THE WHOLE CONTAINER WHICH IN THIS CASE IS THE BODY.
+.container {
+    display: grid;
+    // we defined one row with one implicit row with 80 percent of the height of the viewport
+    //for the second row we want to be automatically fit to the contents. se we defined min-content. min-content is equal to auto as well.
+    // for the third, we want the row itself to the width of the viewport width and its 40 percent of the viewport. you have to check this row later to find more about this one
+    // *one point is here, we set this rows based on the viewport units instead of using rem pixels or other units in order to create a more responsive website from beginning.
+    //forth is the min-content again.
+    //fifth and sixth is similar to forth so we use the repeat feature here.
+    grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+    // we start with creating a 8 grid columns 
+    //for columns we want 1 column in right side for side bar which has 8rem width
+    // then we want 8 columns in the middle of the page each of them are 14 rem. we want a view in the middle of webpage of 1140 pixels in the center.
+    // then we divide this number to 8 and the result is 142.5 pixels which is equal to about 14 rem based on 10 pixel which is one rem
+    //we want this 8 columns to be fixed to 14rem but if the width decreased and there are not space for them to be at this size
+    // then they be adopted to their content size. so we define the minimum size to min content and the maximum to 14rem
+    // we also want two other columns in the sides of these 8 columns. for two reason. in rows that we want to put our content in 8 cols. the two cols would be empty 
+    // and if the screen size decrease first those two cols start to shrink and then 8 cols
+    // we also want ful bleed layouts for other rows then we use those two cols
+    //we want the two cols to be equal so we define them as 1 fr in order to shrink according the white space of the webpage 
+    // and have the same size with each other all the time.
+    // we used 1fr for that two cols because we have a side bar in the left so we can use the margin auto trick.
+    // another way that we could put the contents in the middle is to use justify content.
+    // we want to use ful bleed layouts so we defined that two cols in the sides to use them in that case.
+    // grid-template-columns: 8rem 1fr repeat(8, minmax(min-content, 14rem)) 1fr;
+
+    //we want to have always that 2 cols in the side however the screen reduces. for that we define a 6ren width minimum for them.
+    // grid-template-columns: 8rem minmax(6rem, 1fr) repeat(8, minmax(min-content, 14rem)) minmax(6rem, 1fr); // we create another version with naming
+    // the version with names
+    grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];   
+
+   
+}

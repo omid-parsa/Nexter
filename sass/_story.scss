@@ -1,0 +1,55 @@
+.story {
+    &__pictures {
+    background-image: linear-gradient(rgba($color-primary, .5), rgba($color-primary, .5)),url(../img/back.jpg);
+    grid-column: full-start / col-end 4;
+
+    display: grid;
+    //create a 6 in 6 container
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+
+    align-items: center;// since images have their own aspect ratio so they behave differently than other elements. so we define this property to place them in the center.
+    }
+    //IMAGES STYLING
+    &__img--1 {
+        width: 100%;
+        grid-row: 2/6;
+        grid-column: 2/6;
+        box-shadow: 0 2rem 5rem rgba(#000, .1);
+    }
+    &__img--2 {
+        width: 115%;// since we want it to overlap to the other side of the element so we change its width and increase the width. we could do that by changing the translate and defining the transform origin but this changing the width is more easy.
+        grid-row: 4/6;
+        grid-column: 4/7;
+        z-index: 20;// this helps to overlap other elements.
+        box-shadow: 0 2rem 5rem rgba(#000, .2);
+    }
+
+    // CONTENTS
+    &__content {
+    background-color: $color-grey-light-1;
+
+    grid-column: col-start 5 / full-end;
+
+    // padding: 6rem 12rem;// instead of hard coding it is better to use viewport units instead of rem or px, the reason is to make the page responsive
+    padding: 6rem 8vw;
+
+
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: flex-start;// to do not stretch the items the whole width of the flex which in this case the button is more important
+    
+
+    // the above code in flex and the below code in grid are the same code in different technologies
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    }
+
+    &__text {
+        font-size: 1.5rem;
+        font-style: italic;
+        margin-bottom: 4rem;
+    }
+}

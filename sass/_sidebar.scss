@@ -1,0 +1,30 @@
+.sidebar {
+    background-color: $color-primary;
+
+    grid-column: sidebar-start / sidebar-end; // the first col in the left side
+    grid-row: 1 / -1; // to cover the whole height of the webpage
+
+    display: flex;// since we have only one element and we want to put it in the center so we use for this small components flex box and set the justify content to center
+    justify-content: center;
+
+}
+.nav-btn {
+    border: none;
+    border-radius: 0;
+
+    background-color: #fff;
+    height: 2px;
+    width: 4.5rem;
+    margin-top: 4rem;
+
+    &::before,
+    &::after {
+        content: "";
+        display: block;
+        background-color: #fff;
+        height: 2px;
+        width: 4.5rem;
+    }
+    &::before { transform: translateY(-1.5rem); }
+    &::after { transform: translateY(1.3rem); }
+}
